@@ -22,13 +22,13 @@ public class DeliveryTest {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         $("[data-test-id='city'] input").setValue("Тверь");
-        $("span.menu-item__control").click();
-        String currentDate = generateDate(7, "dd.mm.yyyy");
+        //$("span.menu-item__control").click();
+        String currentDate = generateDate(7, "dd.MM.yyyy");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").sendKeys(currentDate);
         $("[data-test-id='name'] input").setValue("Александра Чернова");
-        $("[data-test-id='phone'] input").setValue("+79201793885");
-        $x("//label[data-test-id='agreement']").click();
+        $("[data-test-id='phone'] input").setValue("+79209999999");
+        $("[data-test-id='agreement']").click();
         $("button.button").click();
         $(".notification__content").shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.exactText("Встреча успешно забронирована на " + currentDate));
